@@ -11,6 +11,17 @@ let form=document.querySelector("#new-ramen")
 document.addEventListener("DOMContentLoaded" ,()=>{
     console.log("loaded")
     fetchImages()
+    fetch(`http://localhost:3000/ramens/2`)
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data)
+        imageName.innerHTML=data.name
+        imageRestaurant.innerHTML=data.restaurant
+        ratingDisplay.innerHTML=data.rating
+        commentDisplay.innerHTML=data.comment
+
+    }).catch(e=>console.log(e))
+
     form.addEventListener("submit", (e)=>{
         let body={}
         e.preventDefault()
