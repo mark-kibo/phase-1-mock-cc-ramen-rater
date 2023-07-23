@@ -54,7 +54,7 @@ const handleImage=(data)=>{
             console.log(e.target)
             // let imageDetail=fetchImageDetail(parseInt(e.target.id))
             // console.log(imageDetail)
-            fetch(`http://localhost:3000/ramens/2`)
+            fetch(`http://localhost:3000/ramens/${e.target.id}`)
             .then(res=>res.json())
             .then(data=>{
                 console.log(data)
