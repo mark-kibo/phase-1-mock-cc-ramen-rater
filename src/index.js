@@ -31,12 +31,16 @@ document.addEventListener("DOMContentLoaded" ,()=>{
             body[`${element.name}`]=element.value
         });
         console.log(body)
+        // post my image to the db
+        addImages(body)
 
-        // create my image
-        let image= document.createElement("img")
-        image.setAttribute('src', `${body.image}`)
-        // image.setAttribute('id', `${body.id}`)
-        ramenDiv.appendChild(image)
+        // // create my image
+        // let image= document.createElement("img")
+        // image.setAttribute('src', `${body.image}`)
+        // // image.setAttribute('id', `${body.id}`)
+        // ramenDiv.appendChild(image)
+
+
 
         form.reset()
 
@@ -45,14 +49,30 @@ document.addEventListener("DOMContentLoaded" ,()=>{
 
 
 const fetchImages=()=>{
-    let imageData;
-    fetch("http://localhost:3000/ramens")
+    return fetch("http://localhost:3000/ramens")
     .then(res=>res.json()).then(
         data=> handleImage(data)
     )
     .catch(e=> console.log(e))
+   
+}
 
-    return imageData;
+// post data to our db
+const addImages=(body)=>{
+    let options={
+        method:"POST", 
+        headers:{
+            "Content-Type":"application/json",
+            "accept":"application/json"
+        },
+        body:JSON.stringify(body)
+    }
+    return fetch("http://localhost:3000/ramens", options)
+    .then(res=>res.json()).then(
+        data=> console.log(data)
+    )
+    .catch(e=> console.log(e))
+   
 }
 
 
